@@ -1,7 +1,28 @@
 ---
 - name: Run command apt-get update && apt-get upgrade for Ubuntu
   hosts: odroid
+  vars:
+  myusers: ['root', 'bin', 'mail', 'vrc', 'nobody']
   tasks:
+
+    - name: Add the user 'vrc' with a bash shell, appending the group 'admins' and 'developers' to the user's groups  
+      user:
+        name: vrc
+        shell: /bin/bash
+        groups: sudo
+
+    - name: Set authorized key for user ubuntu copying it from current user
+      authorized_key:
+        user: vrc
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    
+    - name: Remove unwanted users from list 
+      shell: 'cut -d: -f1 /etc/passwd'
+      register: users
+      user: name={{item}} state=absent remove=yes
+      with_items: users.stdout_lines
+      when: item not in myusers
 
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
