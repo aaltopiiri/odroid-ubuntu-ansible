@@ -1,0 +1,14 @@
+---
+- name: Run command apt-get update && apt-get upgrade for Ubuntu
+  hosts: odroid
+  tasks:
+
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist
+  
