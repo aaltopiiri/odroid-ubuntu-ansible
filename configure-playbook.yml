@@ -15,7 +15,6 @@
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
     
-
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes    
