@@ -2,7 +2,7 @@
 - name: Run command apt-get update && apt-get upgrade for Ubuntu
   hosts: odroid
   tasks:
-
+            
     - name: Add the user 'vrc' with a bash shell, appending the group 'admins' and 'developers' to the user's groups  
       user:
         name: vrc
@@ -47,3 +47,11 @@
         - libssl-dev 
         - libgmp-dev
         state: present   
+
+
+    - name: Clone and update git repository 
+      git:
+        repo: 'https://github.com/effectsToCause/veriumMiner'
+        dest: /home/vrc/veriumMiner
+        clone: yes
+        update: yes
