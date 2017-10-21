@@ -55,3 +55,5 @@
         dest: /home/vrc/veriumMiner
         clone: yes
         update: yes
+        become: yes
+        become_user: vrc 
