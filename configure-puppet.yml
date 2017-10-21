@@ -4,7 +4,10 @@
   tasks:
 
   - name: Download .deb package
-    get_url: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+    get_url: 
+      url: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+      dest: /root
+      mode: 0440
 
   - name: Install a .deb package
     apt:
