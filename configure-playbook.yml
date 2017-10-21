@@ -37,4 +37,13 @@
         - screen
         - tmux
         - htop
+        - puppet
+        - git 
+        - automake 
+        - autoconf 
+        - pkg-config 
+        - libcurl4-openssl-dev 
+        - libjansson-dev 
+        - libssl-dev 
+        - libgmp-dev
         state: present   
