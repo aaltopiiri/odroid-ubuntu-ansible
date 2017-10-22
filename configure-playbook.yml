@@ -54,7 +54,7 @@
     - name: Prevents the kernel module ads7846 from being loaded after reboot
       command: tee /etc/modprobe.d/blacklist-ads7846.conf <<< "ads7846"       
 
-    - name: Clone and update git repository 
+    - name: Clone and update git veriumMiner repository 
       become: true
       become_user: vrc 
       git:
