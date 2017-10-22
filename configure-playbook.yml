@@ -48,6 +48,11 @@
         - libgmp-dev
         state: present   
 
+    - name: Remove a module ads7846
+      command: modprobe -r ads7846
+
+    - name: Prevents the kernel module ads7846 from being loaded after reboot
+      command: tee /etc/modprobe.d/blacklist-ads7846.conf <<< "ads7846"       
 
     - name: Clone and update git repository 
       become: true
