@@ -50,10 +50,10 @@
 
 
     - name: Clone and update git repository 
+      become: true
+      become_user: vrc 
       git:
         repo: 'https://github.com/effectsToCause/veriumMiner'
         dest: /home/vrc/veriumMiner
         clone: yes
         update: yes
-        become: yes
-        become_user: vrc 
