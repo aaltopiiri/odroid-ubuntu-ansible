@@ -3,28 +3,18 @@
   hosts: odroid
   tasks:
             
-    - name: Add the user 'vrc' with a bash shell, appending the group 'admins' and 'developers' to the user's groups  
+    - name: Add the user 'vrc' with a bash shell, appending the group 'sudo' to the user's groups  
       user:
         name: vrc
         shell: /bin/bash
         groups: sudo
 
-    - name: Set authorized key for user ubuntu copying it from current user
+    - name: Set authorized key for user vrc copying it from current user
       authorized_key:
         user: vrc
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
     
-    - name: Download .deb package
-      get_url: 
-        url: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-        dest: /root
-        mode: 0440
-
-    - name: Install a .deb package
-      apt:
-        deb: /root/puppetlabs-release-pc1-xenial.deb
-
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes    
@@ -37,7 +27,6 @@
         - screen
         - tmux
         - htop
-        - puppet
         - git 
         - automake 
         - autoconf 

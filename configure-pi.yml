@@ -1,0 +1,52 @@
+---
+- name: Run command apt-get update && apt-get upgrade for Ubuntu
+  hosts: raspberry
+  tasks:
+            
+    - name: Add the user 'vrc' with a bash shell, appending the group 'sudo' to the user's groups  
+      user:
+        name: vrc
+        shell: /bin/bash
+        groups: sudo
+
+    - name: Set authorized key for user vrc copying it from current user
+      authorized_key:
+        user: vrc
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes    
+        cache_valid_time: 3600        
+    
+    - name: Install list of packages
+      apt: 
+        name:
+        - mc
+        - screen
+        - tmux
+        - htop
+        - build-essential
+        - libboost-dev
+        - libboost-system-dev
+        - libboost-filesystem-dev
+        - libboost-program-options-dev
+        - libboost-thread-dev
+        - libssl-dev
+        - libdb++-dev
+        - libminiupnpc-dev
+        - libboost-all-dev
+        - libqrencode-dev
+        - freeglut3-dev
+        - git
+        state: present
+
+    - name: Clone and update git verium repository 
+      become: true
+      become_user: vrc 
+      git:
+        repo: 'https://github.com/VeriumReserve/verium'
+        dest: /home/vrc/verium
+        clone: yes
+        update: yes

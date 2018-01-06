@@ -1,6 +1,6 @@
 ---
 - name: Run command apt-get update && apt-get upgrade for Ubuntu
-  hosts: odroid
+  hosts: odroid,raspberry
   tasks:
 
     - name: Run the equivalent of "apt-get update" as a separate step
