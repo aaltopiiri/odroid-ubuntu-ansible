@@ -38,13 +38,15 @@
         - libminiupnpc-dev
         - libboost-all-dev
         - libqrencode-dev
+        - libcurl4-openssl-dev
+        - libmkl-dev
         - freeglut3-dev
         - git
         state: present
 
     - name: Clone and update git verium repository 
       become: true
-      become_user: vrc 
+      become_user: vrc
       git:
         repo: 'https://github.com/VeriumReserve/verium'
         dest: /home/vrc/verium
