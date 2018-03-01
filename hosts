@@ -1,5 +1,6 @@
 [odroid]
-vrc_01 ansible_ssh_host=192.168.1.117
-vrc_02 ansible_ssh_host=192.168.1.127
-[raspberry]
-vrm_01 ansible_ssh_host=192.168.1.128
+vrm_01 ansible_ssh_host=192.168.1.11
+vrm_03 ansible_ssh_host=192.168.1.13
+vrm_04 ansible_ssh_host=192.168.1.14
+vrm_05 ansible_ssh_host=192.168.1.15
+vrm_06 ansible_ssh_host=192.168.1.16

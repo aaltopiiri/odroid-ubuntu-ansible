@@ -1,6 +1,6 @@
 ---
 - name: Run command apt-get update && apt-get upgrade for Ubuntu
-  hosts: odroid,raspberry
+  hosts: odroid
   gather_facts: False
   
   tasks:

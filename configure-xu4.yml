@@ -1,11 +1,18 @@
 ---
 - name: Run command apt-get update && apt-get upgrade for Ubuntu
   hosts: odroid
+  gather_facts: False
+  pre_tasks:
+    - name: Install Minimal Python For Ansible
+      raw: test -e /usr/bin/python || (apt update && apt install -y python-minimal)
+      register: test
+      changed_when: test.stdout
+
   tasks:
-            
     - name: Add the user 'vrc' with a bash shell, appending the group 'sudo' to the user's groups  
       user:
         name: vrc
+        password: odroid
         shell: /bin/bash
         groups: sudo
 
@@ -35,6 +42,7 @@
         - libjansson-dev 
         - libssl-dev 
         - libgmp-dev
+        - zlib1g-dev
         state: present   
 
     - name: Remove a module ads7846
@@ -47,7 +55,7 @@
       become: true
       become_user: vrc 
       git:
-        repo: 'https://github.com/effectsToCause/veriumMiner'
+        repo: 'https://github.com/fireworm71/veriumMiner'
         dest: /home/vrc/veriumMiner
         clone: yes
         update: yes
