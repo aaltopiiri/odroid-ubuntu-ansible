@@ -5,7 +5,9 @@
   
   tasks:
     - name: Install Python 2
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-json)
+      register: test
+      changed_when: test.stdout
     
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:

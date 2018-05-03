@@ -1,0 +1,7 @@
+---
+- name: Run ping to all hosts
+  hosts: odroid
+
+  tasks:
+    - ping:
+      data: crash
