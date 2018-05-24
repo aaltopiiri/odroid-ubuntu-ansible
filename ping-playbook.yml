@@ -1,7 +1,7 @@
 ---
 - name: Run ping to all hosts
   hosts: odroid
+  gather_facts: no
 
   tasks:
-    - ping:
-      data: crash
+    - action: ping
