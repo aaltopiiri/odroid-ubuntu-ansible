@@ -1,11 +1,11 @@
 ---
-- name: Run ping to all hosts
+- name: Run script vrmcheck.sh
   hosts: odroid
   gather_facts: no
 
   
   tasks:
-    - name: This command will change the working directory to somedir/ and will only run when /path/to/database doesn't exist.
+    - name: This command will run shell script on remote hosts and show log.
       shell: "./vrmcheck.sh"
       register: shell_result
 
