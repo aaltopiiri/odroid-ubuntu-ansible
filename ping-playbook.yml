@@ -3,5 +3,11 @@
   hosts: odroid
   gather_facts: no
 
+  
   tasks:
-    - action: ping
+    - name: This command will change the working directory to somedir/ and will only run when /path/to/database doesn't exist.
+      shell: "./vrmcheck.sh"
+      register: shell_result
+
+    - debug:
+        var: shell_result.stdout_lines
